@@ -27,3 +27,15 @@ void Box::setLocation(std::string stringValue, int intValue) {
     boxLocation = stringValue;
     positionNumberForm = intValue;
 }
+
+void Box::setup(std::string value, int intValue) {
+    positionNumberForm = intValue;
+    
+    for (int count = 1; count < intValue; count++) {
+        value += " ";
+    }
+    
+    value += "|_|";
+    
+    boxLocation = value;
+}

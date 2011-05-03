@@ -95,25 +95,11 @@ int main ()
     
     
     do {
-        //This for loop will set the string up for being 
-        //where the user will want to guess for.
-        for (int count = 0; count < spikePosition; count++) {
-            strSpike += " ";
-        }
+
+        objSpike.setup(strSpike, spikePosition);
         
-        for (int count = 1; count < spikePosition; count++) {
-            strBox += " ";
-        }
+        objBox.setup(strBox, spikePosition);
         
-        //this will add the special character and 
-        //make the spike visible when called.
-        strSpike += "╫";
-        
-        //this will make the box object happy. 
-        //because that's what it wants goddamnit.
-        strBox += "|_|";
-        
-        objSpike.setLocation(strSpike, spikePosition);
         
         cout << "Okay, you can either guess the spike number, or enter ""-1"" to quit playing.";
         cout << endl << endl;
@@ -122,8 +108,6 @@ int main ()
         
         cin >> input;
         
-        //this gets the box ready for display.
-        objBox.setLocation(strBox, input);
         
         if (input == spikePosition && input != -1) {
             cout << "Looks like you may have it!" << endl << endl;

@@ -32,6 +32,8 @@ public:
     std::string getDestroyed(); //HILARIOUS NO!?!?
     
     void setLocation(std::string, int);
+    
+    void setup(std::string, int);
 
 };
 #endif

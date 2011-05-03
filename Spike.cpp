@@ -21,3 +21,18 @@ void Spike::setLocation(std::string stringValue, int intValue) {
     spikeLocation = stringValue;
     positionNumberForm = intValue;
 }
+
+void Spike::setup(std::string value, int intValue) {
+    
+    positionNumberForm = intValue;
+    
+    //This for loop will set the string up for being 
+    //where the user will want to guess for.
+    for (int count = 0; count < intValue; count++) {
+        value += " ";
+    }
+    
+    value += "╫";
+    
+    spikeLocation = value;
+}

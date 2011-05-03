@@ -25,6 +25,7 @@ public:
     
     std::string getLocation();
     
+    void setup(std::string, int);
 
     void setLocation(std::string, int);
 
