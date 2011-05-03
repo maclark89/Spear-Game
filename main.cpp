@@ -166,6 +166,11 @@ int main ()
             else 
                 cout << "You just killed me." << endl << endl;
             
+            //Resetting the string variables so that the
+            //last ones arent kept.
+            strBox = "";
+            strSpike = "";
+            
         }
             spikePosition = rand() % 10 + 1;
         
