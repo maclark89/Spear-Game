@@ -17,6 +17,7 @@
 #include <iomanip>
 #include <iostream>
 #include <time.h>
+#include <fstream>
 
 #include "Box.h"
 #include "Spike.h"
@@ -31,7 +32,13 @@ int main ()
     //and spike objects.
     srand(time(NULL)); 
     
-    
+    /*This will actually be the beginnings of a high score
+     system implementation.*/
+    int score = 0;
+    ofstream scoreFile;
+    //Opening a file to be written to.
+    scoreFile.open("HighScores.txt");
+        
     //Beginning the game/instructions on how to play.
     cout << "Welcome to a fun game of catch!" << endl;
     cout << "\nIt honestly doesn't make much sense, but you are";
@@ -43,7 +50,7 @@ int main ()
     cout << ", and I'll move the box";
     cout << " to catch it for you!" << endl;
     
-    sleep(3);
+    sleep(1);
     
     cout << endl << "Here goes!" << endl;
     
@@ -51,7 +58,7 @@ int main ()
     cout << "(If I can do it myself, why are you telling me what to ";
     cout << "do? Oh well, I digress.)" << endl << endl;
     
-    sleep(3);
+    sleep(1);
     
     //This will serve as a demonstration for the user.
     
@@ -67,12 +74,12 @@ int main ()
     cout << " and where I'd move the box to suit your request." << endl;
     cout << "Looks like that box is about five spaces over though, so I'll put the box down." << endl;
     
-    sleep(3);
+    sleep(1);
     
     cout << objSpike.getLocation() << endl;
     cout << objBox.getLocation() << endl << endl;
     
-    sleep(3);
+    sleep(1);
     
     cout << objBox.getDestroyed() << "<--- See! We got it!" << endl;
     
@@ -120,6 +127,9 @@ int main ()
             sleep(3);
             
             cout << objBox.getDestroyed() << "<--- We got it!" << endl;
+            
+            //incrementing the score for this playthrough.
+            score += 1;
         }
         
         if (input != spikePosition && input != -1) {
@@ -130,7 +140,7 @@ int main ()
             cout << objSpike.getLocation() << endl;
             cout << objBox.getLocation() << endl << endl;
             
-            sleep(3);
+            sleep(1);
             
             cout << "Running out of time! Try again!" << endl;
             
@@ -139,13 +149,16 @@ int main ()
             if (input == spikePosition) {
                 cout << "Looks like you may have it!" << endl << endl;
                 
-                sleep(3);
+                sleep(1);
                 
                 cout << objSpike.getLocation() << endl;
                 
-                sleep(3);
+                sleep(2);
                 
                 cout << objBox.getDestroyed() << "<--- We got it!" << endl;
+                
+                //incrementing score.
+                score += 1;
             }
             else 
                 cout << "You just killed me." << endl << endl;
@@ -156,10 +169,14 @@ int main ()
             strSpike = "";
             
         }
-            spikePosition = rand() % 10 + 1;
+        //Setting the spike's position randomly again.
+        spikePosition = rand() % 10 + 1;
+        
+        //Writing the score to a file.
+        scoreFile << score << endl;
         
     } while (input != -1);
-  
+    scoreFile.close();
     return 0;
 }
 
