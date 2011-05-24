@@ -24,6 +24,12 @@
 
 using namespace std;
 
+//Number of scores to hold in a highscore array.
+const int NUMBER_OF_SCORES = 10;
+
+//Prototype of a high score module that will accept an array
+//of integers and sort them into the 
+int highscoreModule(int);
 
 int main ()
 {
@@ -35,6 +41,14 @@ int main ()
     /*This will actually be the beginnings of a high score
      system implementation.*/
     int score = 0;
+    
+    //This is an initialization of an array of scores that will be written to 
+    //a file to keep track of high scores.
+    int highscore[NUMBER_OF_SCORES];
+    for (int count = 0; count < 10; count++) {
+        highscore[count] = 0;
+    }
+    
     ofstream scoreFile;
     //Opening a file to be written to.
     scoreFile.open("HighScores.txt");
@@ -172,11 +186,34 @@ int main ()
         //Setting the spike's position randomly again.
         spikePosition = rand() % 10 + 1;
         
-        //Writing the score to a file.
-        scoreFile << score << endl;
         
     } while (input != -1);
+    
+    //Writing the score to a file.
+    scoreFile << score << endl;
+    
+    //closing the scorefile.
     scoreFile.close();
     return 0;
 }
 
+int highscoreModule(int scores[NUMBER_OF_SCORES]) {
+    bool swap;
+    double temp;
+    
+    do
+    {
+        swap = false;
+        for (int count = 0; count < (NUMBER_OF_SCORES - 1); count++) {
+            if (scores[count] > scores[count +1]) {
+                temp = scores[count];
+                
+                scores[count] = scores[count + 1];
+                
+                scores[count + 1] = temp;
+                
+                swap = true;
+            }
+        }
+    } while (swap);
+}
