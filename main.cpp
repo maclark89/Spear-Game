@@ -29,7 +29,7 @@ const int NUMBER_OF_SCORES = 10;
 
 //Prototype of a high score module that will accept an array
 //of integers and sort them into the 
-int highscoreModule(int);
+void highscoreModule(int highscore[NUMBER_OF_SCORES]);
 
 int main ()
 {
@@ -49,6 +49,7 @@ int main ()
         highscore[count] = 0;
     }
     
+    //Creating a file object.
     ofstream scoreFile;
     //Opening a file to be written to.
     scoreFile.open("HighScores.txt");
@@ -197,7 +198,11 @@ int main ()
     return 0;
 }
 
-int highscoreModule(int scores[NUMBER_OF_SCORES]) {
+//This will sort high scores.
+//Hopefully we can get the whole thing
+//running based on an array that will be assigned
+//based on reading a file that holds past high scores.
+void highscoreModule(int highscore[NUMBER_OF_SCORES]) {
     bool swap;
     double temp;
     
@@ -205,12 +210,12 @@ int highscoreModule(int scores[NUMBER_OF_SCORES]) {
     {
         swap = false;
         for (int count = 0; count < (NUMBER_OF_SCORES - 1); count++) {
-            if (scores[count] > scores[count +1]) {
-                temp = scores[count];
+            if (highscore[count] > highscore[count +1]) {
+                temp = highscore[count];
                 
-                scores[count] = scores[count + 1];
+                highscore[count] = highscore[count + 1];
                 
-                scores[count + 1] = temp;
+                highscore[count + 1] = temp;
                 
                 swap = true;
             }
